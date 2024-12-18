@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+<br>
+<form method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <div class="col-8">
+            {% csrf_token %}  {# agrega el token de seguridad #}
+            {% comment %} {{ form.as_p }} {% endcomment %}
+            {% for field in form %}
+                <label class="form-lable">{{ field.label }}:</label>
+                <br>
+                {{ form.media }}
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <button type='submit' class="btn btn-primary">{% if update == 1 %}Actualizar{% else %}Crear{% endif %}</button>
+        </div>
+    </div>
+</form>
+<br>
+<br>
+<br>
+
+{% endblock content %}
